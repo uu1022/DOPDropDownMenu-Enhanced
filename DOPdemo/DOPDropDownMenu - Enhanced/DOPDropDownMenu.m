@@ -610,7 +610,7 @@
         indicator.fillColor = _textSelectedColor.CGColor;
     } else {
         // 收缩
-        indicator.fillColor = _textColor.CGColor;
+        indicator.fillColor = self.indicatorColor.CGColor;
     }
     
     complete();
