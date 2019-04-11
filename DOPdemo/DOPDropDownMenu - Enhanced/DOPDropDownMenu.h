@@ -25,6 +25,11 @@
 @end
 
 #pragma mark - data source protocol
+typedef enum : NSUInteger {
+    TableTypeTableView,
+    TableTypeCollectionVeiw,
+} TableType;
+
 @class DOPDropDownMenu;
 
 @protocol DOPDropDownMenuDataSource <NSObject>
@@ -42,6 +47,8 @@
 - (NSString *)menu:(DOPDropDownMenu *)menu titleForRowAtIndexPath:(DOPIndexPath *)indexPath;
 
 @optional
+- (NSString *)menu:(DOPDropDownMenu *)menu defaultTitleInColumn:(NSUInteger)column;
+- (TableType)menu:(DOPDropDownMenu *)menu typeInColumn:(NSUInteger)column;
 /**
  *  返回 menu 有多少列 ，默认1列
  */
@@ -158,5 +165,7 @@ typedef NS_ENUM(NSInteger, DOPIndicatorAlignType) {
 - (void)selectIndexPath:(DOPIndexPath *)indexPath; // 默认trigger delegate
 
 - (void)selectIndexPath:(DOPIndexPath *)indexPath triggerDelegate:(BOOL)trigger; // 调用代理
+
+
 @end
 

@@ -86,6 +86,7 @@
 @property (nonatomic, strong) UIView *backGroundView;
 @property (nonatomic, strong) UITableView *leftTableView;   // 一级列表
 @property (nonatomic, strong) UITableView *rightTableView;  // 二级列表
+@property (nonatomic,strong) UICollectionView *collectionView;
 @property (nonatomic, strong) UIImageView *buttomImageView; // 底部imageView
 @property (nonatomic, weak) UIView *bottomShadow;
 
