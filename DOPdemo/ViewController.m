@@ -65,12 +65,20 @@
 - (IBAction)selectIndexPathAction:(id)sender {
     [_menu selectIndexPath:[DOPIndexPath indexPathWithCol:0 row:2 item:2]];
 }
+#pragma mark - delegate
 
 - (NSInteger)numberOfColumnsInMenu:(DOPDropDownMenu *)menu
 {
     return 3;
 }
 
+- (TableType)menu:(DOPDropDownMenu *)menu typeInColumn:(NSUInteger)column{
+    NSArray *types = @[@(TableTypeTableView),
+             @(TableTypeCollectionVeiw),
+             @(TableTypeCollectionVeiw),
+             ];
+    return [types[column] integerValue];
+}
 - (NSInteger)menu:(DOPDropDownMenu *)menu numberOfRowsInColumn:(NSInteger)column
 {
     if (column == 0) {

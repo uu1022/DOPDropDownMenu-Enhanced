@@ -649,10 +649,13 @@
     complete();
 }
 
-- (void)animateTableView:(UITableView *)tableView show:(BOOL)show complete:(void(^)())complete {
+- (void)animateTableView:(id)table show:(BOOL)show complete:(void(^)())complete {
     
     BOOL haveItems = NO;
-    
+    if ([table isKindOfClass:[UICollectionView class]]) {
+        
+        return;
+    }
     if (_dataSource) {
         NSInteger num = [_leftTableView numberOfRowsInSection:0];
         
@@ -742,8 +745,14 @@
     [self animateIndicator:indicator Forward:forward complete:^{
         [self animateTitle:title show:forward complete:^{
             [self animateBackGroundView:background show:forward complete:^{
-                [self animateTableView:tableView show:forward complete:^{
-                }];
+                if ([_dataSource menu:self typeInColumn:_currentSelectedMenudIndex] == TableTypeTableView) {
+                    [self animateTableView:tableView show:forward complete:^{
+                    }];
+
+                }else{
+                    [self animateTableView:_collectionView show:forward complete:^{
+                    }];
+                }
             }];
         }];
     }];
